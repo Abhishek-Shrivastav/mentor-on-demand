@@ -1,0 +1,8 @@
+package com.mentorondemand.entity;
+
+public class Snippet {
+	public static void main(String[] args) {
+		restTemp.getForObject("http://USER/user/getById/"+list.getMentorId(),User.class);
+	}
+}
+

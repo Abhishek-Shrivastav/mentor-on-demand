@@ -1,0 +1,15 @@
+package com.cgt.mentor.technology.entity;
+
+public class TechnologyById {
+
+	private Technology tech;
+
+	public TechnologyById(Technology tech) {
+		
+		this.tech = tech;
+	}
+
+	public Technology getTechList() {
+		return tech;
+	}
+}

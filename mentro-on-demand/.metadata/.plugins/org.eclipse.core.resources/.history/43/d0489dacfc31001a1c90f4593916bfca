@@ -1,0 +1,19 @@
+package com.mentorondemand.entity;
+
+import java.util.List;
+
+public class SearchList {
+
+	private List<Search> searchList;
+
+	public SearchList() {}
+	
+	public SearchList(List<Search> searchList) {
+		
+		this.searchList = listSearch;
+	}
+
+	public List<Search> getListSearch() {
+		return searchList;
+	}
+}

@@ -1,0 +1,15 @@
+package com.cgt.mentor.entity;
+
+public class UserById {
+
+	private User user;
+
+	public UserById(User user) {
+		
+		this.user = user;
+	}
+
+	public User getUsetList() {
+		return user;
+	}
+}

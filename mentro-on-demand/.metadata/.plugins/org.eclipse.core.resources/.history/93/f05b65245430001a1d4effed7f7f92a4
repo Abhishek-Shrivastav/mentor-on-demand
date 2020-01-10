@@ -1,0 +1,5 @@
+package com.mentorondemand.entity;
+
+public class Search {
+
+}

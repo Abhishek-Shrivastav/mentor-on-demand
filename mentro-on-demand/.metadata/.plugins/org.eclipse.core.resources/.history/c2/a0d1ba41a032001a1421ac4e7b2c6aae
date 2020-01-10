@@ -1,0 +1,47 @@
+package com.mentorondemand.login.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.mentorondemand.entity.Login;
+import com.mentorondemand.entity.Role;
+import com.mentorondemand.entity.User;
+
+@Service
+public class LoginService {
+
+	@Autowired
+	private RestTemplate restTemp;
+	
+	/*public Login login(String username,String password)
+	{
+		User user = null;
+		
+		user = restTemp.getForObject("http://USER/user/getUserLogin/"+username+"/"+password,User.class);
+		Role role = restTemp.getForObject("http://ROLE/role/getById/"+user.getRoleId(),Role.class);
+		
+		Login login = new Login(user);
+		
+		if(user.getRoleId() == role.getId())
+			return login;
+		
+		return login;
+	}*/
+	
+	public User login(Login login)
+	{
+		User user = null;
+		
+		user = restTemp.postForObject("http://USER/user/getUserLogin",login,User.class);
+		//user = restTemp.getForObject("http://USER/user/getUserLogin/"+login.getUsername()+"/"+login.getPassword(),User.class);
+		Role role = restTemp.getForObject("http://ROLE/role/getById/"+user.getRoleId(),Role.class);
+		
+		System.out.println("login user : "+user);
+		
+		if(user.getRoleId() == role.getId())
+			return user;
+		
+		return user;
+	}
+}

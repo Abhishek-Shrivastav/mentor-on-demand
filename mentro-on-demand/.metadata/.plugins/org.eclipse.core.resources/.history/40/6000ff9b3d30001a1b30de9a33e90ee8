@@ -1,0 +1,17 @@
+package com.cgt.mentor.entity;
+
+import java.util.List;
+
+public class UserStatusResponse {
+
+	private Boolean status;
+
+	public UserStatusResponse(Boolean status) {
+		
+		this.status = status;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+}

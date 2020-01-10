@@ -1,0 +1,5 @@
+package com.cgt.mentor.role.entity;
+
+public class RoleList {
+
+}

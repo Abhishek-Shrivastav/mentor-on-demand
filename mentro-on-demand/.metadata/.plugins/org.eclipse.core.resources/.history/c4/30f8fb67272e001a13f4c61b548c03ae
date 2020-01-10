@@ -1,0 +1,19 @@
+package com.cgt.mentor.training.entity;
+
+import java.util.List;
+
+public class TrainingStatusresponse {
+
+	private Boolean status;
+
+	public TrainingStatusresponse() {}
+
+	public TrainingStatusresponse(Boolean status) {
+		
+		this.status = status;
+	}
+
+	public Boolean getTrainingList() {
+		return status;
+	}
+}

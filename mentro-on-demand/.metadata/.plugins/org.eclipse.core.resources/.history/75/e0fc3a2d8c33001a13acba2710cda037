@@ -1,0 +1,16 @@
+package com.cgt.mentor.training.facade;
+
+import java.util.List;
+
+import com.cgt.mentor.training.entity.Training;
+
+public interface TrainingDao {
+
+	List<Training> getAllTraining();
+	Training getTrainingById(Integer id);
+	boolean saveTraining(Training skill);
+	boolean updateTraining(Training skill);
+	boolean deleteTraining(Integer id);
+	boolean checkStatus(Integer slotId);
+	List<Training> getByTrainingId(Integer mentorId);
+}

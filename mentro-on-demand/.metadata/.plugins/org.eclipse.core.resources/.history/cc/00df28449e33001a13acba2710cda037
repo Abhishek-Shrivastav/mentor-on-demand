@@ -1,0 +1,98 @@
+package com.cgt.mentor.slot.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cgt.mentor.slot.entity.MentorSlot;
+import com.cgt.mentor.slot.entity.SlotList;
+import com.cgt.mentor.slot.entity.SlotStatusResponse;
+import com.cgt.mentor.slot.facade.MentorSlotService;
+
+@RestController
+@RequestMapping("/mentorslot")
+public class MentorSlotController {
+
+	@Autowired
+	private MentorSlotService service;
+	
+	@GetMapping("/getAllSlot")
+	public SlotList getAllSlot()
+	{
+		return this.service.getAll();
+	}
+	
+	@GetMapping("/getById/{id}")
+	public ResponseEntity<MentorSlot> getById(@PathVariable("id") Integer id)
+	{
+		MentorSlot status = this.service.getById(id);
+		
+		if(status == null)
+			return new ResponseEntity<MentorSlot>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<MentorSlot>(status,HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/save")
+	public ResponseEntity<SlotStatusResponse> save(@RequestBody MentorSlot slot)
+	{
+		SlotStatusResponse status = new SlotStatusResponse(this.service.save(slot));
+		
+		if(!status.getStatus())
+			return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/delete/{id}")
+	public ResponseEntity<SlotStatusResponse> delete(@PathVariable("id") Integer id)
+	{
+		SlotStatusResponse status = new SlotStatusResponse(this.service.delete(id));
+		
+		if(!status.getStatus())
+			return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<SlotStatusResponse> update(@RequestBody MentorSlot slot)
+	{
+		SlotStatusResponse status = new SlotStatusResponse(this.service.update(slot));
+		
+		if(!status.getStatus())
+			return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/getByMentorId/{id}")
+	public ResponseEntity<SlotList> getByMentorId(@PathVariable("id") Integer id)
+	{
+		SlotList mentor = this.service.getByMentorId(id);
+		
+		if(mentor == null)
+			return new ResponseEntity<SlotList>(mentor,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<SlotList>(mentor,HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/userRequest/{id}")
+	public ResponseEntity<SlotStatusResponse> userRequest(@PathVariable Integer id)
+	{
+		SlotStatusResponse status = new SlotStatusResponse();
+		
+		if(!status.getStatus())
+			return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<SlotStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+}

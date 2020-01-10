@@ -1,0 +1,50 @@
+package com.cgt.mentor.role.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cgt.mentor.role.entity.Role;
+import com.cgt.mentor.role.facade.RoleService;
+
+@RestController
+@RequestMapping("/role")
+public class RoleController {
+
+	@Autowired
+	private RoleService service;
+	
+	@RequestMapping("/getAllRole")
+	public List<Role> getAllRole()
+	{
+		return this.service.getAll();
+	}
+	
+	@RequestMapping("/getById/{id}")
+	public Role getById(@PathVariable("id") Integer id)
+	{
+		return this.service.getById(id);
+	}
+	
+	@RequestMapping("/save")
+	public boolean save(@RequestBody Role role)
+	{
+		return this.service.save(role);
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public boolean delete(@PathVariable("id") Integer id)
+	{
+		return this.service.delete(id);
+	}
+	
+	@RequestMapping("/update")
+	public boolean update(@RequestBody Role role)
+	{
+		return this.service.update(role);
+	}
+}

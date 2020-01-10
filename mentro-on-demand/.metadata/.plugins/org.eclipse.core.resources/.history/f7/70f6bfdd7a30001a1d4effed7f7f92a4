@@ -1,0 +1,14 @@
+package com.cgt.mentor.facade;
+
+import com.cgt.mentor.entity.User;
+import com.cgt.mentor.entity.UserList;
+
+public interface UserService {
+
+	UserList getAll();
+	User getById(Integer id);
+	boolean save(User user);
+	boolean update(User user);
+	boolean delete(Integer id);
+	//UserList getUserByTechId(Integer id);
+}

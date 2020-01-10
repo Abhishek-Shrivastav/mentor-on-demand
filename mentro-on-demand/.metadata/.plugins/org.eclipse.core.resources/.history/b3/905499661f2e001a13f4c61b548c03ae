@@ -1,0 +1,86 @@
+package com.cgt.mentor.skill.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cgt.mentor.skill.entity.MentorSkill;
+import com.cgt.mentor.skill.entity.SkillList;
+import com.cgt.mentor.skill.entity.SkillStatusResponse;
+import com.cgt.mentor.skill.facade.MentorSkillService;
+
+@RestController
+@RequestMapping("/mentorskill")
+public class MentorSkillController {
+
+	@Autowired
+	private MentorSkillService service;
+	
+	@RequestMapping("/")
+	public String hello()
+	{
+		return "Hello";
+	}
+	
+	@GetMapping("/getAllSkill")
+	public ResponseEntity<SkillList> getAllSkill()
+	{
+		SkillList list = this.service.getAll();
+		
+		if(list != null)
+			return new ResponseEntity<>(list,HttpStatus.FOUND);
+		else
+			return new ResponseEntity<>(list,HttpStatus.NOT_FOUND);
+	}
+	
+	@PostMapping("/save")
+	public boolean save(@RequestBody MentorSkill skill)
+	{
+		return this.service.save(skill);
+	}
+	
+	@GetMapping("/getById/{id}")
+	public ResponseEntity<MentorSkill> getSkillById(@PathVariable("id") Integer id)
+	{
+		MentorSkill skill = this.service.getById(id);
+		
+		if(skill != null)
+			return new ResponseEntity<>(skill,HttpStatus.FOUND);
+		else
+			return new ResponseEntity<>(skill,HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable("id") Integer id)
+	{
+		SkillStatusResponse statusResponse = new SkillStatusResponse(this.service.delete(id));
+		
+		Boolean status = statusResponse.getStatus();
+		
+		if(status != true)
+			return new ResponseEntity<>(status,HttpStatus.ACCEPTED);
+		else
+			return new ResponseEntity<>(status,HttpStatus.NOT_ACCEPTABLE);
+	}
+	
+	@PutMapping("/update")
+	public ResponseEntity<Boolean> update(@RequestBody MentorSkill skill)
+	{
+		SkillStatusResponse statusResponse = new SkillStatusResponse(this.service.update(skill));
+		
+		Boolean status = statusResponse.getStatus();
+
+		if(status != true)
+			return new ResponseEntity<>(status,HttpStatus.ACCEPTED);
+		else
+			return new ResponseEntity<>(status,HttpStatus.NOT_ACCEPTABLE);
+	}
+}

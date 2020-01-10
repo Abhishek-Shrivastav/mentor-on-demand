@@ -1,0 +1,16 @@
+package com.cgt.mentor.technology.entity;
+
+import java.util.List;
+
+public class TechnologyList {
+
+	private List<Technology> techList;
+
+	public List<Technology> getTechList() {
+		return techList;
+	}
+
+	public void setTechList(List<Technology> techList) {
+		this.techList = techList;
+	}
+}

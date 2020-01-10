@@ -1,0 +1,17 @@
+package com.cgt.mentor.role.entity;
+
+import java.util.List;
+
+public class RoleById {
+
+	private List<Role> roleList;
+
+	public RoleById(List<Role> roleList) {
+		
+		this.roleList = roleList;
+	}
+
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+}

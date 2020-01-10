@@ -1,0 +1,17 @@
+package com.cgt.mentor.training.entity;
+
+public class TrainingById {
+
+	private Training training;
+
+	public TrainingById() {}
+
+	public TrainingById(Training training) {
+		
+		this.training = training;
+	}
+
+	public Training getTraining() {
+		return training;
+	}
+}

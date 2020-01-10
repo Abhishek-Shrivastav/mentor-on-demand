@@ -1,0 +1,44 @@
+package com.mentorondemand.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mentorondemand.entity.Login;
+import com.mentorondemand.entity.User;
+import com.mentorondemand.login.service.LoginService;
+
+@RestController
+@RequestMapping("/login")
+public class LoginController {
+	
+	@Autowired
+	private LoginService service;
+	
+	/*@RequestMapping("/{username}/{password}")
+	public Login loginService(@PathVariable("username") String username,@PathVariable("password") String password)
+	{
+		Login user;
+		
+		try
+		{
+			user = this.service.login(username, password);
+			System.out.println("User : "+user);
+		}
+		catch(Exception e)
+		{
+			user = null;
+		}
+		
+		return user;
+	}*/
+	
+	@PostMapping("/")
+	public Login loginService(@RequestBody Login login)
+	{
+		return this.service.login(login.getUsername(),login.getPassword());;
+	}
+}

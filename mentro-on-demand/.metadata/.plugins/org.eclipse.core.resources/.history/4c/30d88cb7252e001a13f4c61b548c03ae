@@ -1,0 +1,15 @@
+package com.cgt.mentor.role.entity;
+
+public class RoleStatus {
+
+	private Boolean status;
+
+	public RoleStatus(Boolean status) {
+		
+		this.status = status;
+	}
+
+	public Boolean getRoleList() {
+		return status;
+	}
+}

@@ -1,0 +1,48 @@
+package com.cgt.mentor.slot.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cgt.mentor.slot.entity.MentorSlot;
+import com.cgt.mentor.slot.entity.SlotList;
+import com.cgt.mentor.slot.facade.MentorSlotDao;
+import com.cgt.mentor.slot.facade.MentorSlotService;
+
+@Service
+public class MentorSlotServiceImpl implements MentorSlotService {
+
+	@Autowired
+	private MentorSlotDao dao;
+	
+	public SlotList getAll() {
+		
+		SlotList list = new SlotList(this.dao.getAllSlot());
+		
+		return list;
+	}
+
+	public MentorSlot getById(Integer id) {
+		
+		return this.dao.getSlotById(id);
+	}
+
+	public boolean save(MentorSlot slot) {
+		
+		return this.dao.saveSlot(slot);
+	}
+
+	public boolean update(MentorSlot slot) {
+		
+		return this.dao.updateSlot(slot);
+	}
+
+	public boolean delete(Integer id) {
+		
+		return this.dao.deleteSlot(id);
+	}
+
+	public List<MentorSlot> getByMentorId(Integer id) {
+		
+		return this.dao.getMentorById(id);
+	}
+}

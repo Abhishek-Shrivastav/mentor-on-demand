@@ -1,0 +1,5 @@
+package com.cgt.mentor.training.entity;
+
+public class TrainingList {
+
+}

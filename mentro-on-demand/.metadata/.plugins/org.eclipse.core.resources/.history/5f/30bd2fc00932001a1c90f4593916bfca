@@ -1,0 +1,6 @@
+package com.mentorondemand.login.entity;
+
+public class Login {
+
+	
+}

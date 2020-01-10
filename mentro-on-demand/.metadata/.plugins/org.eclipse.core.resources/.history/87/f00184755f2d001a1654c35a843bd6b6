@@ -1,0 +1,5 @@
+package com.cgt.mentor.skill.entity;
+
+public class SkillList {
+
+}

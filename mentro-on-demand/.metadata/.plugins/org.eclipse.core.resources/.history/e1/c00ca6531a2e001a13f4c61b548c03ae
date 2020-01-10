@@ -1,0 +1,14 @@
+package com.cgt.mentor.skill.facade;
+
+import com.cgt.mentor.skill.entity.MentorSkill;
+import com.cgt.mentor.skill.entity.SkillList;
+
+public interface MentorSkillService {
+
+	List<MentorSkill> getAll();
+	SkillList getAll();
+	MentorSkill getById(Integer id);
+	boolean save(MentorSkill skill);
+	boolean update(MentorSkill skill);
+	boolean delete(Integer id);
+}

@@ -1,0 +1,5 @@
+package com.cgt.mentor.entity;
+
+public class UserList {
+
+}

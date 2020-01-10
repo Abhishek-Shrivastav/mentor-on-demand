@@ -1,0 +1,14 @@
+package com.cgt.mentor.training.facade;
+
+import com.cgt.mentor.training.entity.Training;
+import com.cgt.mentor.training.entity.TrainingById;
+import com.cgt.mentor.training.entity.TrainingList;
+
+public interface TrainingService {
+
+	TrainingList getAll();
+	TrainingById getById(Integer id);
+	boolean save(Training skill);
+	boolean update(Training skill);
+	boolean delete(Integer id);
+}

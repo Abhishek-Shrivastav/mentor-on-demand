@@ -1,0 +1,136 @@
+package com.mentorondemand.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mentorondemand.entity.MentorSkill;
+import com.mentorondemand.entity.MentorSlot;
+import com.mentorondemand.entity.Register;
+import com.mentorondemand.entity.SkillList;
+import com.mentorondemand.entity.SlotList;
+import com.mentorondemand.entity.StatusResponse;
+import com.mentorondemand.entity.TrainingList;
+import com.mentorondemand.login.service.MentorService;
+
+@RestController
+@RequestMapping("/mentor")
+public class MentorController {
+
+	@Autowired
+	private MentorService service;
+	@Autowired
+	private RegisterController register;
+	
+	//done - mentor register
+	/*@PostMapping("/register")
+	public StatusResponse register(@RequestBody Register reg)
+	{
+		return this.register.save(reg);
+	}*/
+	
+	/*Mentor Skill Section*/
+	
+	//done - get all mentor skill records using mentor_id by mentor
+	@GetMapping("/getAllSkill/{id}")
+	public SkillList getAllSkill(@PathVariable("id") Integer id)
+	{
+		return this.service.getAllMentorSkill(id);
+	}
+	
+	//done - get mentor skill record by using primary key(id)
+	@GetMapping("/getSkillId/{id}")
+	public MentorSkill getSkillId(@PathVariable("id") Integer id)
+	{
+		return this.service.getSkillId(id);
+	}
+	
+	//done - insert any mentor skill by mentor
+	@PostMapping("/addSkill")
+	public StatusResponse addmentorSkill(@RequestBody MentorSkill mentorSkill)
+	{
+		return this.service.saveMentorSkill(mentorSkill);
+	}
+	
+	//done - update any mentor skill by mentor
+	@PutMapping("/editSkill")
+	public StatusResponse editmentorSkill(@RequestBody MentorSkill mentorSkill)
+	{
+		return this.service.updateMentorSkill(mentorSkill);
+	}
+	
+	//done - delete any mentor skill by mentor
+	@DeleteMapping("/deleteSkill/{id}")
+	public StatusResponse deletementorSkill(@PathVariable("id") Integer id)
+	{
+		return this.service.deleteMentorSkill(id);
+	}
+	
+	/*Mentor Slot Section*/
+	
+	//done - get all mentor slot records using mentor_id by mentor
+	@GetMapping("/getAllSlot/{id}")
+	public SlotList getAllSlot(@PathVariable("id") Integer id)
+	{
+		return this.service.getAllMentorSlot(id);
+	}
+	
+	//done - get mentor slot record by using primary key(id)
+	@GetMapping("/getSlotId/{id}")
+	public MentorSlot getSlotId(@PathVariable("id") Integer id)
+	{
+		return this.service.getSlotId(id);
+	}
+	
+	//testing - insert any mentor slot by mentor
+	@PostMapping("/addSlot")
+	public StatusResponse addMentorSlot(@RequestBody MentorSlot mentorSlot)
+	{
+		return this.service.saveMentorSlot(mentorSlot);
+	}
+
+	//testing - update any mentor slot by mentor
+	@PutMapping("/editSlot")
+	public StatusResponse editMentorSlot(@RequestBody MentorSlot mentorSlot)
+	{
+		return this.service.updateMentorSlot(mentorSlot);
+	}
+
+	//done - delete any mentor slot timing by mentor
+	@GetMapping("/deleteSlot/{id}")
+	public StatusResponse deleteMentorSlot(@PathVariable("id") Integer id)
+	{
+		return this.service.deleteMentorSlot(id);
+	}
+	
+	/*Training Section*/
+	
+	//done - view all training history by mentor
+	@GetMapping("/getTrainingHistory")
+	public TrainingList getAllTraining()
+	{
+		return this.service.getAllTraining();
+	}
+	
+	//done - view all running training history by mentor
+	@GetMapping("/getRuningTraining")
+	public TrainingList getRunningTraining()
+	{
+		return this.service.getActionTraining(2);
+	}
+	
+	//done - view all complete training history by mentor
+	@GetMapping("/getCompleteTraining")
+	public TrainingList getCompleteTraining()
+	{
+		return this.service.getActionTraining(3);
+	}
+	
+	/*Mentor Request Answer Section*/
+}

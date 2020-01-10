@@ -1,0 +1,39 @@
+package com.mentorondemand.entity;
+
+public class Technology {
+
+	private Integer id;
+	private String technologyName;
+	private Integer isActive;
+	
+	public Technology() {}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTechnologyName() {
+		return technologyName;
+	}
+
+	public void setTechnologyName(String technologyName) {
+		this.technologyName = technologyName;
+	}
+
+	public Integer getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Integer isActive) {
+		this.isActive = isActive;
+	}
+
+	@Override
+	public String toString() {
+		return "Technology [id=" + id + ", technologyName=" + technologyName + ", isActive=" + isActive + "]";
+	}
+}

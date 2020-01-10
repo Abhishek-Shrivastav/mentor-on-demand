@@ -1,0 +1,9 @@
+package com.cgt.mentor.skill.excpetion;
+
+public class MentorSkillNotFoundException extends RuntimeException {
+	
+	public MentorSkillNotFoundException(String message) {
+		
+		super(message);
+	}
+}

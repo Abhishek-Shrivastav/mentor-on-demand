@@ -1,0 +1,38 @@
+package com.mentorondemand.login.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.mentorondemand.entity.MentorSkill;
+import com.mentorondemand.entity.MentorSlot;
+import com.mentorondemand.entity.StatusResponse;
+import com.mentorondemand.entity.TrainingList;
+
+@Service
+public class MentorService {
+
+	@Autowired
+	private RestTemplate restTemp;
+	
+	public StatusResponse saveMentorSkill(MentorSkill mentorSkill)
+	{
+		StatusResponse status = restTemp.postForObject("http://MENTOR-SKILL/mentorskill/save",mentorSkill,StatusResponse.class);
+		
+		return status;
+	}
+	
+	public StatusResponse saveMentorSlot(MentorSlot mentorSlot)
+	{
+		StatusResponse status = restTemp.postForObject("http://MENTOR-SLOT/mentorslot/save",mentorSlot,StatusResponse.class);
+		
+		return status;
+	}
+	
+	public TrainingList getAllTraining()
+	{
+		TrainingList trainingList = restTemp.getForObject("http://TRAINING/training/getAllTraining",TrainingList.class);
+		
+		return trainingList;
+	}
+}

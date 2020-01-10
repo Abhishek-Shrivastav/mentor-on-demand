@@ -1,0 +1,26 @@
+package com.cgt.mentor.skill.entity;
+
+import java.util.List;
+
+public class SkillList {
+
+	private List<MentorSkill> listSkill;
+	private boolean status;
+
+	public SkillList(List<MentorSkill> listSkill) {
+		
+		this.listSkill = listSkill;
+	}
+
+	public SkillList(boolean status) {
+		this.status = status;
+	}
+
+	public List<MentorSkill> getListSkill() {
+		return listSkill;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+}

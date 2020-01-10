@@ -1,0 +1,17 @@
+package com.cgt.mentor.slot.entity;
+
+import java.util.List;
+
+public class SlotStatusResponse {
+
+	private Boolean status;
+
+	public SlotStatusResponse(Boolean status) {
+		
+		this.status = status;
+	}
+
+	public Boolean getListSlot() {
+		return status;
+	}
+}

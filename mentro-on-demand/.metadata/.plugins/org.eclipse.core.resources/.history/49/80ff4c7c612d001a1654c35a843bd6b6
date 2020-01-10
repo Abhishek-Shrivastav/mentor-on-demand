@@ -1,0 +1,5 @@
+package com.cgt.mentor.slot.entity;
+
+public class SlotList {
+
+}

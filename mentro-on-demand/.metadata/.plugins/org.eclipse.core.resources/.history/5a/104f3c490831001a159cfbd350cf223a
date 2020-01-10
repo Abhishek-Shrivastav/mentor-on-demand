@@ -1,0 +1,68 @@
+package com.cgt.mentor.technology.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cgt.mentor.technology.entity.Technology;
+import com.cgt.mentor.technology.entity.TechnologyById;
+import com.cgt.mentor.technology.entity.TechnologyList;
+import com.cgt.mentor.technology.entity.TechnologyStatusResponse;
+import com.cgt.mentor.technology.facade.TechnologyService;
+
+@RestController
+@RequestMapping("/technology")
+public class TechnologyController {
+
+	@Autowired
+	private TechnologyService service;
+	
+	@RequestMapping("/getAllTech")
+	public TechnologyList getAllTech()
+	{
+		return this.service.getAll();
+	}
+	
+	@RequestMapping("/getById/{id}")
+	public Technology getById(@PathVariable("id") Integer id)
+	{
+		return new Technology(this.service.getById(id));
+	}
+	
+	@RequestMapping("/save")
+	public ResponseEntity<TechnologyStatusResponse> save(@RequestBody Technology tech)
+	{
+		TechnologyStatusResponse status = new TechnologyStatusResponse(this.service.save(tech));
+		
+		if(!status.getTechList())
+			return new ResponseEntity<TechnologyStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<TechnologyStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping("/delete/{id}")
+	public ResponseEntity<TechnologyStatusResponse> delete(@PathVariable("id") Integer id)
+	{
+		TechnologyStatusResponse status = new TechnologyStatusResponse(this.service.delete(id));
+		
+		if(!status.getTechList())
+			return new ResponseEntity<TechnologyStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<TechnologyStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+	
+	@RequestMapping("/update")
+	public ResponseEntity<TechnologyStatusResponse> update(@RequestBody Technology tech)
+	{
+		TechnologyStatusResponse status = new TechnologyStatusResponse(this.service.update(tech));
+		
+		if(!status.getTechList())
+			return new ResponseEntity<TechnologyStatusResponse>(status,HttpStatus.NOT_ACCEPTABLE);
+		
+		return new ResponseEntity<TechnologyStatusResponse>(status,HttpStatus.ACCEPTED);
+	}
+}

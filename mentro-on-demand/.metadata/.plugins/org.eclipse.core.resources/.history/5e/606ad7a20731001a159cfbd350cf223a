@@ -1,0 +1,17 @@
+package com.mentorondemand.entity;
+
+public class UserById {
+
+	private User user;
+
+	public UserById() {}
+
+	public UserById(User user) {
+		
+		this.user = user;
+	}
+
+	public User getUserById() {
+		return user;
+	}
+}

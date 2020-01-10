@@ -1,0 +1,82 @@
+package com.mentorondemand.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mentorondemand.entity.MentorSkill;
+import com.mentorondemand.entity.MentorSlot;
+import com.mentorondemand.entity.Register;
+import com.mentorondemand.entity.SkillList;
+import com.mentorondemand.entity.StatusResponse;
+import com.mentorondemand.entity.TrainingList;
+import com.mentorondemand.login.service.MentorService;
+
+@RestController
+@RequestMapping("/mentor")
+public class MentorController {
+
+	@Autowired
+	private MentorService service;
+	@Autowired
+	private RegisterController register;
+	
+	//done
+	@PostMapping("/register")
+	public StatusResponse register(@RequestBody Register reg)
+	{
+		return this.register.save(reg);
+	}
+	
+	//done
+	@GetMapping("/getAll/{id}")
+	public SkillList getAllSkill(@PathVariable("id") Integer id)
+	{
+		return this.service.getAllMentorSkill(id);
+	}
+	
+	//on going
+	@GetMapping("/getId/{id}")
+	public MentorSkill getSkillId(@PathVariable("id") Integer id)
+	{
+		return this.service.getSkillId(id);
+	}
+	
+	//done
+	@PostMapping("/addSkill")
+	public StatusResponse addmentorSkill(@RequestBody MentorSkill mentorSkill)
+	{
+		return this.service.saveMentorSkill(mentorSkill);
+	}
+	
+	//error
+	@PutMapping("/editSkill")
+	public StatusResponse editmentorSkill(@RequestBody MentorSkill mentorSkill)
+	{
+		//System.out.println(mentorSkill);
+		return this.service.updateMentorSkill(mentorSkill);
+	}
+	
+	@PostMapping("/addMentorSlot")
+	public StatusResponse addmentorSlot(@RequestBody MentorSlot mentorSlot)
+	{
+		return this.service.saveMentorSlot(mentorSlot);
+	}
+	
+	@PutMapping("/editMentorSlot")
+	public StatusResponse editmentorSlot(@RequestBody MentorSlot mentorSlot)
+	{
+		return this.service.updateMentorSlot(mentorSlot);
+	}
+	
+	@GetMapping("/getTrainingHistory")
+	public TrainingList getAllTraining()
+	{
+		return this.service.getAllTraining();
+	}
+}

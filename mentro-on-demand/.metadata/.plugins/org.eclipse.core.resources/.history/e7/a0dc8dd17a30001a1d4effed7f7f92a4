@@ -1,0 +1,58 @@
+package com.cgt.mentor.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cgt.mentor.dao.UserDaoImpl;
+import com.cgt.mentor.entity.User;
+import com.cgt.mentor.entity.UserList;
+import com.cgt.mentor.facade.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserDaoImpl dao;
+	
+	@Override
+	public UserList getAll() {
+		
+		UserList list = new UserList(this.dao.getAllUser());
+		
+		return list;
+	}
+
+	@Override
+	public User getById(Integer id) {
+		
+		return this.dao.getUserById(id);
+	}
+
+	@Override
+	public boolean save(User user) {
+		
+		return this.dao.saveUser(user);
+	}
+
+	@Override
+	public boolean update(User user) {
+		
+		return this.dao.updateUser(user);
+	}
+
+	@Override
+	public boolean delete(Integer id) {
+		
+		return this.dao.deleteUser(id);
+	}
+
+	/*@Override
+	public UserList getUserByTechId(Integer id) {
+		
+		UserList list = new UserList(this.dao.getUserByTechId(id));
+
+		return list;
+	}*/
+}

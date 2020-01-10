@@ -1,0 +1,5 @@
+package com.cgt.mentor.skill.excpetion;
+
+public class MentorSkillNotFoundException {
+
+}

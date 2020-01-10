@@ -1,0 +1,109 @@
+package com.mentorondemand.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.mentorondemand.entity.MentorSkill;
+import com.mentorondemand.entity.MentorSlot;
+import com.mentorondemand.entity.Search;
+import com.mentorondemand.entity.SkillList;
+import com.mentorondemand.entity.SlotList;
+import com.mentorondemand.entity.Technology;
+import com.mentorondemand.entity.Training;
+import com.mentorondemand.entity.TrainingList;
+import com.mentorondemand.entity.User;
+
+@RestController
+@RequestMapping("/search")
+public class SearchController {
+
+	@Autowired
+	private RestTemplate restTemp;
+	
+	/*@RequestMapping("/{techId}")
+	public List<List<Search>> searchById(@PathVariable("techId") Integer techId)
+	{
+		SkillList skillList = restTemp.getForObject("http://MENTOR-SKILL/mentorskill/getMentorSkillByTechId/"+techId,SkillList.class);
+		
+		return skillList.getListSkill().stream().map(list -> {
+			
+			Technology tech = restTemp.getForObject("http://TECHNOLOGY/technology/getById/"+list.getTechnologyId(),Technology.class);
+			User user = restTemp.getForObject("http://USER/user/getById/"+list.getMentorId(),User.class);
+			SlotList slots = restTemp.getForObject("http://MENTOR-SLOT/mentorslot/getByMentorId/"+list.getTechnologyId(),SlotList.class);
+			//SlotList slots = restTemp.getForObject("http://MENTOR-SLOT/mentorslot/getByMentorId/"+list.getMentorId(),SlotList.class);
+			
+			return slots.getListSlot().stream().map(slot -> {
+				
+				return new Search(user.getId(),user.getFirstName(),user.getLastName(),user.getYearOfExp(),user.getLinkedInUrl(),tech.getId(),tech.getTechnologyName(),list.getId(),list.getToc(),list.getPrerequisites(),list.getFee(),slot.getId(),slot.getTimeFrom(),slot.getTimeTo());
+			}).collect(Collectors.toList());
+			
+		}).collect(Collectors.toList());
+	}*/
+	
+	@RequestMapping("/{techId}")
+	public List<Search> searchById(@PathVariable("techId") Integer techId)
+	{
+		List<Search> search = new ArrayList<>();
+		
+		SkillList skillList = restTemp.getForObject("http://MENTOR-SKILL/mentorskill/getMentorSkillByTechId/"+techId,SkillList.class);
+		
+		for(MentorSkill skill : skillList.getListSkill()) {
+			
+			Technology tech = restTemp.getForObject("http://TECHNOLOGY/technology/getById/"+skill.getTechnologyId(),Technology.class);
+			User user = restTemp.getForObject("http://USER/user/getById/"+skill.getMentorId(),User.class);
+			TrainingList trainings = restTemp.getForObject("http://MENTOR-SLOT/mentorslot/getByMentorId/"+skill.getMentorId(),TrainingList.class);
+			SlotList slots = restTemp.getForObject("http://TRAINING/training/getTrainingById/"+skill.getMentorId(),SlotList.class);
+			
+			for(MentorSlot slot : slots.getListSlot()) {
+				
+				for(Training training : trainings.getTrainingList()) {
+					
+					search.add(new Search(user.getId(),user.getFirstName(),user.getLastName(),user.getYearOfExp(),user.getLinkedInUrl(),tech.getId(),tech.getTechnologyName(),skill.getId(),skill.getToc(),skill.getPrerequisites(),skill.getFee(),slot.getId(),slot.getTimeFrom(),slot.getTimeTo()));
+				}
+			}
+		}
+		
+		return search;
+	}
+	
+	@RequestMapping("/skill/{techId}")
+	public SkillList skillById(@PathVariable("techId") Integer techId)
+	{
+		SkillList skillList = restTemp.getForObject("http://MENTOR-SKILL/mentorskill/getMentorSkillByTechId/"+techId,SkillList.class);
+		return skillList;
+	}
+	
+	@RequestMapping("/tech/{techId}")
+	public Technology techById(@PathVariable("techId") Integer techId)
+	{
+		Technology tech = restTemp.getForObject("http://TECHNOLOGY/technology/getById/"+techId,Technology.class);
+		return tech;
+	}
+	
+	@RequestMapping("/user/{techId}")
+	public User userById(@PathVariable("techId") Integer techId)
+	{
+		User user = restTemp.getForObject("http://USER/user/getById/"+techId,User.class);
+		return user;
+	}
+	
+	@RequestMapping("/training/{id}")
+	public TrainingList trainingById(@PathVariable("id") Integer id)
+	{
+		TrainingList training = restTemp.getForObject("http://MENTOR-SLOT/mentorslot/getByMentorId/"+id,TrainingList.class);
+		return training;
+	}
+	
+	@RequestMapping("/slot/{id}")
+	public SlotList slotById(@PathVariable("id") Integer id)
+	{
+		SlotList slot = restTemp.getForObject("http://MENTOR-SLOT/mentorslot/getByMentorId/"+id,SlotList.class);
+		return slot;
+	}
+}

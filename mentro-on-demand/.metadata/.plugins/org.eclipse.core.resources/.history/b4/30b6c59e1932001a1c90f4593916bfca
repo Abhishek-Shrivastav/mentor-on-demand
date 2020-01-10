@@ -1,0 +1,15 @@
+package com.cgt.mentor.role.entity;
+
+public class RoleById {
+
+	private Role roleList;
+
+	public RoleById(Role roleList) {
+		
+		this.roleList = roleList;
+	}
+
+	public Role getRoleById() {
+		return roleList;
+	}
+}

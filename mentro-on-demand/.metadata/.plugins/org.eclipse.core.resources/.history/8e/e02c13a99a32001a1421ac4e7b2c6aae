@@ -1,0 +1,16 @@
+package com.mentorondemand.entity;
+
+public class Login {
+
+	private User user;
+	
+	public Login() {}
+
+	public Login(User user) {
+		this.user = user;
+	}
+
+	public User getUser() {
+		return user;
+	}
+}

@@ -1,0 +1,17 @@
+package com.cgt.mentor.skill.entity;
+
+import java.util.List;
+
+public class SkillStatusResponse {
+
+	private Boolean status;
+
+	public SkillStatusResponse(Boolean status) {
+		
+		this.status = status;
+	}
+
+	public Boolean getListSkill() {
+		return status;
+	}
+}

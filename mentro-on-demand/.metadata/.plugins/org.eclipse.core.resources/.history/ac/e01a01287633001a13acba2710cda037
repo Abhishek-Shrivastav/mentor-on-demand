@@ -1,0 +1,117 @@
+package com.mentorondemand.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mentorondemand.entity.MentorSkill;
+import com.mentorondemand.entity.MentorSlot;
+import com.mentorondemand.entity.Register;
+import com.mentorondemand.entity.SkillList;
+import com.mentorondemand.entity.SlotList;
+import com.mentorondemand.entity.StatusResponse;
+import com.mentorondemand.entity.TrainingList;
+import com.mentorondemand.login.service.MentorService;
+
+@RestController
+@RequestMapping("/mentor")
+public class MentorController {
+
+	@Autowired
+	private MentorService service;
+	@Autowired
+	private RegisterController register;
+	
+	//done
+	@PostMapping("/register")
+	public StatusResponse register(@RequestBody Register reg)
+	{
+		return this.register.save(reg);
+	}
+	
+	/*Mentor Skill Section*/
+	
+	//done
+	@GetMapping("/getAllSkill/{id}")
+	public SkillList getAllSkill(@PathVariable("id") Integer id)
+	{
+		return this.service.getAllMentorSkill(id);
+	}
+	
+	//done
+	@GetMapping("/getSkillId/{id}")
+	public MentorSkill getSkillId(@PathVariable("id") Integer id)
+	{
+		return this.service.getSkillId(id);
+	}
+	
+	//done
+	@PostMapping("/addSkill")
+	public StatusResponse addmentorSkill(@RequestBody MentorSkill mentorSkill)
+	{
+		return this.service.saveMentorSkill(mentorSkill);
+	}
+	
+	//done
+	@PutMapping("/editSkill")
+	public StatusResponse editmentorSkill(@RequestBody MentorSkill mentorSkill)
+	{
+		return this.service.updateMentorSkill(mentorSkill);
+	}
+	
+	//done
+	@DeleteMapping("/deleteSkill")
+	public StatusResponse deletementorSkill(@PathVariable("id") Integer id)
+	{
+		return this.service.deleteMentorSkill(id);
+	}
+	
+	/*Mentor Slot Section*/
+	
+	//done
+	@GetMapping("/getAllSlot/{id}")
+	public SlotList getAllSlot(@PathVariable("id") Integer id)
+	{
+		return this.service.getAllMentorSlot(id);
+	}
+	
+	//done
+	@GetMapping("/getSlotId/{id}")
+	public MentorSlot getSlotId(@PathVariable("id") Integer id)
+	{
+		return this.service.getSlotId(id);
+	}
+	
+	@PostMapping("/addSlot")
+	public StatusResponse addMentorSlot(@RequestBody MentorSlot mentorSlot)
+	{
+		return this.service.saveMentorSlot(mentorSlot);
+	}
+	
+	@PutMapping("/editSlot")
+	public StatusResponse editMentorSlot(@RequestBody MentorSlot mentorSlot)
+	{
+		return this.service.updateMentorSlot(mentorSlot);
+	}
+	
+	@DeleteMapping("/deleteSlot")
+	public StatusResponse deleteMentorSlot(@PathVariable("id") Integer id)
+	{
+		return this.service.deleteMentorSlot(id);	//slot
+	}
+	
+	/*Training Section*/
+	
+	//done
+	@GetMapping("/getTrainingHistory")
+	public TrainingList getAllTraining()
+	{
+		return this.service.getAllTraining();
+	}
+}

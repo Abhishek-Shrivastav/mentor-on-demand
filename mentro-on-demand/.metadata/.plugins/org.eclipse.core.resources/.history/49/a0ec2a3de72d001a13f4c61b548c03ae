@@ -1,0 +1,12 @@
+package com.cgt.mentor.slot.entity;
+
+import java.util.List;
+
+public class SlotList {
+
+	private List<MentorSlot> listSlot;
+
+	public List<MentorSlot> getListSlot() {
+		return listSlot;
+	}
+}

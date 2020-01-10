@@ -1,0 +1,16 @@
+package com.cgt.mentor.role.entity;
+
+import java.util.List;
+
+public class RoleList {
+
+	private List<Role> roleList;
+
+	public List<Role> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<Role> roleList) {
+		this.roleList = roleList;
+	}
+}

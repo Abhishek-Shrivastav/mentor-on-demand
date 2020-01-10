@@ -1,0 +1,22 @@
+package com.mentorondemand.entity;
+
+public class Search {
+
+	//mentor details
+	private Integer mentorId;
+	private String mentorFirstName;
+	private String mentorLastName;
+	private Integer yearExp;
+	private String linkedInUrl;
+	//mentor skill
+	private Integer techId;
+	private String techName;
+	private Integer skillId;
+	private String toc;
+	private String prerequisites;
+	private Integer fee;
+	//mentor slot
+	private Integer slotId;
+	private String timeFrom;
+	private String timeTo;
+}

@@ -1,0 +1,5 @@
+package com.cgt.mentor.technology.entity;
+
+public class TechnologyList {
+
+}

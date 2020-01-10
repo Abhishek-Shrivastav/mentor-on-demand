@@ -1,0 +1,23 @@
+package com.mentorondemand.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mentorondemand.entity.Register;
+import com.mentorondemand.entity.StatusResponse;
+import com.mentorondemand.login.service.MentorService;
+
+@RestController
+public class MentorController {
+
+	@Autowired
+	private MentorService service;
+	
+	@PostMapping("/")
+	public StatusResponse save(@RequestBody Register reg)
+	{
+		return null;
+	}
+}

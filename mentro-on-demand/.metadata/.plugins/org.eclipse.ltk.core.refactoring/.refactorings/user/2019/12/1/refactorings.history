@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.cgt.mentor.user&apos; to &apos;com.cgt.mentor&apos;&#x0A;- Original project: &apos;user&apos;&#x0A;- Original element: &apos;user/src/main/java/com.cgt.mentor.user&apos;&#x0A;- Renamed element: &apos;user/src/main/java/com.cgt.mentor&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.cgt.mentor.user&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.cgt.mentor.user" name="com.cgt.mentor" qualified="false" references="true" stamp="1577772799447" textual="false" version="1.0"/>
+</session>

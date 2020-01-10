@@ -1,0 +1,16 @@
+package com.cgt.mentor.slot.facade;
+
+import com.cgt.mentor.slot.entity.MentorSlot;
+import com.cgt.mentor.slot.entity.SlotList;
+import com.cgt.mentor.slot.service.List;
+
+public interface MentorSlotService {
+
+	//List<MentorSlot> getAll();
+	SlotList getAll();
+	MentorSlot getById(Integer id);
+	boolean save(MentorSlot slot);
+	boolean update(MentorSlot slot);
+	boolean delete(Integer id);
+	SlotList getByMentorId(Integer id);
+}

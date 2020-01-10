@@ -1,0 +1,81 @@
+package com.cgt.mentor.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cgt.mentor.entity.User;
+import com.cgt.mentor.facade.UserDao;
+
+@Repository
+@Transactional
+public class UserDaoImpl implements UserDao {
+
+	@PersistenceContext
+	private EntityManager entity;
+	
+	@Override
+	public List<User> getAllUser() {
+		
+		List<User> user = this.entity.createQuery("From User").getResultList();
+		
+		return user;
+	}
+
+	@Override
+	public User getUserById(Integer id) {
+		
+		User user = this.entity.find(User.class,id);
+		
+		return user;
+	}
+
+	@Override
+	public boolean saveUser(User user) {
+		
+		this.entity.persist(user);
+		
+		return true;
+	}
+
+	@Override
+	public boolean updateUser(User user) {
+		
+		User userUpd = this.entity.find(User.class,user.getId());
+		
+		userUpd.setUserName(user.getUserName());
+		userUpd.setPassword(user.getPassword());
+		userUpd.setFirstName(user.getFirstName());
+		userUpd.setLastName(user.getLastName());
+		userUpd.setContact(user.getContact());
+		userUpd.setRoleId(user.getRoleId());
+		userUpd.setLinkedInUrl(user.getLinkedInUrl());
+		userUpd.setYearOfExp(user.getYearOfExp());
+		userUpd.setIsActive(user.getIsActive());
+		
+		this.entity.flush();
+		
+		return true;
+	}
+
+	@Override
+	public boolean deleteUser(Integer id) {
+		
+		User user = this.entity.find(User.class,id);
+		this.entity.remove(user);
+		
+		return true;
+	}
+
+	/*@Override
+	public User getUserByTechId(Integer id) {
+		
+		User user = this.entity.find(User.class,id);
+		
+		return user;
+	}*/
+}

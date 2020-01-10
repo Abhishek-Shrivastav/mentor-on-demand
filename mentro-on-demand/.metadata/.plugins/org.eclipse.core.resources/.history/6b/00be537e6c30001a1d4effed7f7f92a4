@@ -1,0 +1,15 @@
+package com.cgt.mentor.facade;
+
+import java.util.List;
+
+import com.cgt.mentor.entity.User;
+
+public interface UserDao {
+
+	List<User> getAllUser();
+	User getUserById(Integer id);
+	boolean saveUser(User user);
+	boolean updateUser(User user);
+	boolean deleteUser(Integer id);
+	List<User> getUserByTechId(Integer id);
+}

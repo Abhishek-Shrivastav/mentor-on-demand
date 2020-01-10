@@ -1,0 +1,58 @@
+package com.cgt.mentor.skill.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cgt.mentor.skill.entity.MentorSkill;
+import com.cgt.mentor.skill.entity.SkillList;
+import com.cgt.mentor.skill.facade.MentorSkillDao;
+import com.cgt.mentor.skill.facade.MentorSkillService;
+
+@Service
+public class MentorSkillServiceImpl implements MentorSkillService {
+
+	@Autowired
+	private MentorSkillDao dao;
+	
+	@Override
+	public SkillList getAll() {
+		
+		SkillList list = new SkillList(this.dao.getAllSkill());
+
+		return list;
+	}
+
+	@Override
+	public MentorSkill getById(Integer id) {
+		
+		return this.dao.getSkillById(id);
+	}
+
+	@Override
+	public Boolean save(MentorSkill skill) {
+		
+		return this.dao.saveSkill(skill);
+	}
+
+	@Override
+	public Boolean update(MentorSkill skill) {
+		
+		return this.dao.updateSkill(skill);
+	}
+
+	@Override
+	public Boolean delete(Integer id) {
+		
+		return this.dao.deleteSkill(id);
+	}
+
+	@Override
+	public SkillList getMentorSkillByTechId(Integer id) {
+		
+		SkillList list = new SkillList(this.dao.getMentorSkillByTechId(id));
+		
+		return list;
+	}
+	
+	
+}

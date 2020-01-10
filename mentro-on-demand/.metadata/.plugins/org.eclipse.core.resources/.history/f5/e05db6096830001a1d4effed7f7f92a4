@@ -1,0 +1,19 @@
+package com.mentorondemand.entity;
+
+import java.util.List;
+
+public class SearchList {
+
+	private List<MentorSkill> listSkill;
+
+	public SearchList() {}
+	
+	public SearchList(List<MentorSkill> listSkill) {
+		
+		this.listSkill = listSkill;
+	}
+
+	public List<MentorSkill> getListSkill() {
+		return listSkill;
+	}
+}
